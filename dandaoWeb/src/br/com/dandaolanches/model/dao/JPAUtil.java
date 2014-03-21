@@ -7,7 +7,7 @@ public class JPAUtil {
 	
 	// Definicao de atributo para criacao de conexoes
 	private static EntityManagerFactory emf = Persistence
-			.createEntityManagerFactory("notas");
+			.createEntityManagerFactory("cardapio");
 
 	/**
 	 * Metodo responsavel pela criacao de conexoes

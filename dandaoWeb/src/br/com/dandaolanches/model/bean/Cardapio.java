@@ -13,6 +13,8 @@ public class Cardapio {
 	private Long id;
 	private String nome;
 	private String descricao;
+
+	
 	//Armazenar apanas a data, sem hora
 	@Temporal(TemporalType.DATE)
 	private Calendar dataCadastro;

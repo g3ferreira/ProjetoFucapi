@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<!-- Uso de Tags JSF: Arvore de componente -->
+<f:view contentType="text/html" />
+<h:head>
+	<title>Dandão Lanches</title>
+	<link href="resources/css/style.css" rel="stylesheet" />
+
+
+</h:head>
+
+<h:body>
+	<h:outputText value="Dandão Lanches - Rede de Lanchonetes"
+		id="titulo-index" />
+
+	<div id="content-login">
+		<table id="table-content">
+			<tr>
+		   <td><input id="txtLogin" type="text" class="inputsLogin" placeholder="login" />	</td>
+			</tr>
+			<tr>
+				<td><input id="txtSenha" type="password" class="inputsLogin" placeholder="senha" /></td>
+			</tr>
+		</table>
+		
+		<div id="buttons-content">
+			<button  class="index-buttonsClass" onclick="goToPage('cardapio.xhtml')">
+				ENTRAR 
+			</button>
+			<button class="index-buttonsClass" onclick="clearMan()">
+				CANCELAR
+			</button>
+		</div>
+		
+		<div id="link-content">
+			<a onclick="showMessage('Página em Desenvolvimento')">Esqueceu sua senha ?</a>
+		
+		</div>
+		
+	</div>
+
+
+
+<script>	
+	function goToPage(pagina){
+		
+		location.href=pagina;
+	}
+	function clearMan()
+	{
+		document.getElementById("txtLogin").value="";
+		document.getElementById("txtSenha").value ="";
+		
+	}
+	function showMessage(msg)
+	{
+		alert(msg);
+	}
+	
+	
+</script>
+
+
+</h:body>
+</html>

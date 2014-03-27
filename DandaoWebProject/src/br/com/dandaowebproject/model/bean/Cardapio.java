@@ -23,6 +23,7 @@ public class Cardapio {
 	private double preco;
 	private String tipo;
 	
+	
 	public Long getId() {
 		return id;
 	}

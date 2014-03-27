@@ -16,6 +16,7 @@ public class CardapioDAO {
 	public CardapioDAO(EntityManager entityManager) {
 		this.entityManager = entityManager;
 	}
+	
 	public void cadastrar(Cardapio cardapio){
 		entityManager.persist(cardapio);
 	}

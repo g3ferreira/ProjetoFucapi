@@ -45,7 +45,7 @@
 					<h:outputLabel value="Preço:" for="preco"/>
 					<h:inputText id="preco" value="#{cardapioController.cardapio.preco}"/>
 					<h:outputLabel value="Tipo:" for="tipo"/>
-				     <h:selectOneMenu value="#{cardapioController.cardapio.tipo}">  
+				     <h:selectOneMenu id="tipo"  value="#{cardapioController.cardapio.tipo}">  
            			 	<f:selectItem itemLabel="Selecione" itemValue="" />  
             		 	<f:selectItem itemLabel="Sanduiches" itemValue="Sanduiches" />  
             		 	<f:selectItem itemLabel="Sobremesas" itemValue="Sobremesas" />  

@@ -24,6 +24,7 @@ namespace DandaoLancheApp
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+
             MessageBox.Show("ASUISjHSAlkj");
         }
     }

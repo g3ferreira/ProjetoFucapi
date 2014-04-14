@@ -18,4 +18,18 @@ public class JPAUtil {
 	public static EntityManager getEntityManager() {
 		return emf.createEntityManager();
 	}
+
+	private static EntityManagerFactory emfPedido = Persistence
+			.createEntityManagerFactory("pedido");
+
+	/**
+	 * Metodo responsavel pela criacao de conexoes
+	 * @return conexao para acesso ao SGBD
+	 */
+	public static EntityManager getEntityManagerPedido() {
+		return emfPedido.createEntityManager();
+	}
+
+
+
 }

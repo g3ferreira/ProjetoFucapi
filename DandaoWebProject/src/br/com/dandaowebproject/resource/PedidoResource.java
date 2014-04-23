@@ -2,7 +2,7 @@ package br.com.dandaowebproject.resource;
 
 import java.util.ArrayList;
 
-import javax.servlet.Servlet;
+import javax.servlet. Servlet;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;

@@ -4,16 +4,21 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import br.com.dandaowebproject.model.bean.Cardapio;
+import br.com.dandaowebproject.model.bean.Item;
 import br.com.dandaowebproject.model.bean.Pedido;
+import br.com.dandaowebproject.model.bean.PedidoItem;
 
 @SuppressWarnings("unchecked")
 public class PedidoDAO {
+
+	
 
 	public static EntityManager entityManager;
 	public PedidoDAO(EntityManager entityManager) {
@@ -26,50 +31,74 @@ public class PedidoDAO {
 		if(instance == null)
 			instance = new PedidoDAO(entityManager);
 		return instance;
-	}
-
+	}	
 	
-	public void cadastrar(Pedido pedido){
-		entityManager.persist(pedido);
+	/*---------------------------- ITEM DAO ---------------------------------------*/
+	
+	public void cadastrar(Item item){
+		entityManager.persist(item);
 	}
-	public void alterar(Pedido pedido){
-		entityManager.merge(pedido);
+	public void alterar(Item item){
+		entityManager.merge(item);
 	}
-	public void excluir(Pedido pedido){
-		entityManager.remove(entityManager.merge(pedido));
+	public void excluir(Item item){
+		entityManager.remove(entityManager.merge(item));
 	}
 	
-//	public Pedido consultar(Long id){
-//		return entityManager.getReference(Pedido.class, idpedido);
+//	public Item consultar(Long id){
+//		return entityManager.getReference(Item.class, idpedido);
 //	}	
-	
-	
-	public ArrayList<Pedido> listarPedido(){
-		System.out.println(">listarPedido DAO");
-		String jpql = "Select p from Pedido p order by idpedido";
+		
+	public ArrayList<Item> listarItem(){
+		System.out.println(">listarItem DAO");
+		String jpql = "Select p from Item p order by idpedidoitem";
 		Query query = entityManager.createQuery(jpql);
 		System.out.println("primeiro resultado: "+query.getFirstResult());
-		return (ArrayList<Pedido>) query.getResultList();
+		return (ArrayList<Item>) query.getResultList();
+	}
+	
+	
+	
+	/*-------------------------------- PEDIDOITEM DAO ----------------------------------------*/
+	
+	
+	public void cadastrarPedidoItem(PedidoItem pedidoItem){
+		entityManager.persist(pedidoItem);
+	}
+	public void alterarPedidoItem(PedidoItem pedidoItem){
+		entityManager.merge(pedidoItem);
+	}
+	public void excluirPedidoItem(PedidoItem pedidoItem){
+		entityManager.remove(entityManager.merge(pedidoItem));
 	}
 
-	public String inserirPedido(Long idpedido, String nomeProduto, int quantidade, double preco){
-		Pedido pedido = new Pedido();
+	public ArrayList<PedidoItem> listarPedidoItem(){
 		
-		pedido.setIdPedido(idpedido);
-		pedido.setNomeProduto(nomeProduto);
-		pedido.setQuantidade(quantidade);
-		pedido.setPreco(preco);
-		System.out.println(
-				"ID: "+pedido.getIdPedido()+
-				"nome Podruto: "+	pedido.getNomeProduto()+
-				"nome Quantidade: "+	pedido.getQuantidade()+
-				"nome Preco: "+	pedido.getPreco()
-				);
-		
-		cadastrar(pedido);
+		System.out.println(">listarPedido DAO");
+		String jpql = "Select p from PedidoItem p order by idpedidoitem";
+		Query query = entityManager.createQuery(jpql);
+		return (ArrayList<PedidoItem>) query.getResultList();
+	}
 	
 	
-	return "SUCESS";
+	
+	/*-------------------------------- PEDIDO DAO ----------------------------------------*/
+	
+	public void cadastrarPedido(Pedido pedido){
+		entityManager.persist(pedido);
+	}
+	public void alterarPedido(Pedido pedido){
+		entityManager.merge(pedido);
+	}
+	public void excluirPedido(Pedido pedido){
+		entityManager.remove(entityManager.merge(pedido));
+	}
+
+	public ArrayList<Pedido> listarPedido(){
+		System.out.println(">listarPedido");
+		String jpql = "Select p from Pedido p order by idpedido";
+		Query query = entityManager.createQuery(jpql);
+		return (ArrayList<Pedido>) query.getResultList();
 	}
 	
 	

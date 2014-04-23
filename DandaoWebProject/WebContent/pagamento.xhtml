@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:h="http://java.sun.com/jsf/html">
+	<f:view contentType="text/html"/>
+	<h:head>                                         
+		<title>Dandão Lanches - Cadastro de Pedido</title>
+		<h:outputStylesheet library="css" name="grid.css"/>
+
+		<h:outputStylesheet library="css" name="style.css"/>
+	</h:head>
+	<h:body>
+	
+	<div id="blocoCabecalho">
+		<div class="container">
+			<h:graphicImage library="imagens" name="genilson2.png" 	id="logoCompany"/>
+		</div>
+	</div>
+	
+		<div id="blocoConteudo">
+		<div class="container">
+		<h2>Pagamento do Pedido</h2>
+		<h:form id="dados">
+			<fieldset>
+				<legend>Dados do Pedido</legend>
+				<h:panelGrid columns="2">
+		
+					
+					<h:outputLabel value="Numero do Pedido:" for="idpedido"/>
+					<h:inputText id="idpedido" value="#{pedidoController.pedido.idpedido}"/>
+					
+					<h:outputLabel value="Data Pedido:" for="datacadastro"/>
+						
+					<h:inputText id="datacadastro" value="#{pedidoController.pedido.datacadastro}" />
+					
+					<h:outputLabel value="Total Pedido:" for="totalpedido"/>
+					<h:inputText id="totalpedido" value="#{pedidoController.pedido.totalpedido}"/>
+					    
+					    				    
+					<h:selectOneMenu id="status"  value="#{pedidoController.pedido.status}">  
+           			 	<f:selectItem itemLabel="Não Pago" itemValue="NP" />   
+            		 	<f:selectItem itemLabel="Pago" itemValue="PG" />            		 	         			
+        			</h:selectOneMenu>
+					
+					<h:commandButton value="Salvar" action="#{pedidoController.salvarPedido}">
+						<f:ajax execute="@form" render="@form :tabela" />
+					</h:commandButton>
+				</h:panelGrid>
+			</fieldset>
+		</h:form>
+			
+		<h2>Listagem de Pedidos Pagos</h2>
+		<h:form id="tabela">
+			<h:dataTable value="#{pedidoController.pedido.listaPedidos}" var="pedido"
+				styleClass="dados" rowClasses="impar,par" >
+				<h:column>
+					<f:facet name="header"><h:outputText value="Data Pedido" /></f:facet>
+					<h:outputText value="#{pedido.dataCadastro.time}">
+						<f:convertDateTime pattern="dd/MM/yyyy"/>
+					</h:outputText>
+				</h:column>
+				<h:column>
+					<f:facet name="header"><h:outputText value="Numero do Pedido" /></f:facet>
+					#{pedido.idpedido}
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header"> <h:outputText value="Total Pedido" /></f:facet>
+					<h:outputText value="#{pedido.totalpedido}" >
+						<f:convertNumber pattern="R$ #0.00"/>
+					</h:outputText>
+				</h:column>			
+				
+				<h:column>
+					<h:commandLink action="#{pedidoController.excluir}" 
+								   value="Remover">
+						<f:ajax render="@form" />
+						<f:setPropertyActionListener 
+							target="#{pedidoController.pedido}" 
+							value="#{pedido}"/>
+					</h:commandLink>
+				</h:column>
+				<h:column>
+					<h:commandLink value="Alterar">
+						<f:ajax render="@form :dados" />
+						<f:setPropertyActionListener 
+							target="#{pedidoController.pedido}" 
+							value="#{pedido}"/>
+					</h:commandLink>
+				</h:column>
+			</h:dataTable>
+		</h:form>
+	</div>
+	</div>
+	<div id="cardapio-produto" >
+		<marquee>
+		<image width="210" height="210" src="resources/imagens/xtudo.png" />
+		<image width="210" height="210" src="resources/imagens/misto.jpg" />
+		<image width="210" height="210" src="resources/imagens/drinks.jpg" />
+		<image width="210" height="210" src="resources/imagens/moussechoco.jpg" />
+		<image width="210" height="210" src="resources/imagens/moussemorango.jpg" />
+		<image width="210" height="210" src="resources/imagens/refris.jpg" />
+		<image width="210" height="210" src="resources/imagens/xsalada.jpg" />
+		<image width="210" height="210" src="resources/imagens/kikao.jpg" />
+		 </marquee>
+	</div>
+<!--	<div id="blocoRodape">
+ 	<div class="container" >
+		<p>Copyright 2013. Todos os direitos reservados</p>
+	</div>
+	</div> -->
+	</h:body>
+</html>

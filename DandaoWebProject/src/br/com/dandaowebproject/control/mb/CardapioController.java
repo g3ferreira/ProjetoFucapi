@@ -58,6 +58,7 @@ public class CardapioController {
 	}
 
 	public void salvar(){
+		System.out.println("ENTROUUUUUUUU");
 		EntityManager em = JPAUtil.getEntityManager();
 		CardapioDAO dao = new CardapioDAO(em);
 		em.getTransaction().begin();

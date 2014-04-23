@@ -31,9 +31,17 @@ public class PedidoController {
 	
 	public Item item ;
 	public PedidoItem pedidoItem;
-	public Pedido pedido;
+	private Pedido pedido;
 	
-	
+
+	public Pedido getPedido() {
+		return pedido;
+	}
+
+
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
+	}	
 	
 	
 /*---------------------------------- PEDIDOITEM CONTROLLER -----------------------------------------*/
@@ -74,6 +82,16 @@ public class PedidoController {
 		
 	}	
 	
+
+
+	public void salvarPedido(){
+		 System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaa meu deus do ceu");
+	
+	}
+	
+
+	
+	
 	
 
 /*--------------------------------------------- PEDIDO  DAO -----------------------------------------*/
@@ -98,11 +116,11 @@ public class PedidoController {
 		 EntityManager manager = JPAUtil.getEntityManagerPedido();
 		 manager.getTransaction().begin();
 		 PedidoDAO dao = new PedidoDAO(manager);
-		 pedido = new Pedido();
-		 pedido.setIdPedido(idpedido);
-		 pedido.setDataCadastro(Calendar.getInstance());
-		 pedido.setStatus(status);
-		 pedido.setInstance(pedido);
+		 setPedido(new Pedido());
+		 getPedido().setIdPedido(idpedido);
+		 getPedido().setDataCadastro(Calendar.getInstance());
+		 getPedido().setStatus(status);
+		 getPedido().setInstance(getPedido());
 		/// dao.cadastrarPedido(pedido);
 		 
 	return "SUCESS";
@@ -113,17 +131,17 @@ public class PedidoController {
 		System.out.println(">finalizarPedido");
 		EntityManager em = JPAUtil.getEntityManagerPedido();
 		PedidoDAO dao = new PedidoDAO(em);
-		 pedido.getInstance().setDataCadastro(Calendar.getInstance());
+		 getPedido().getInstance().setDataCadastro(Calendar.getInstance());
 		 em.getTransaction().begin();
 
 		 double totalPedido =0;
 		
-			for (PedidoItem pedidoItem3 :  pedido.getInstance().getPedidoList()) {
+			for (PedidoItem pedidoItem3 :  getPedido().getInstance().getPedidoList()) {
 			 totalPedido = totalPedido + +pedidoItem3.getItem().getTotal();
 			}
 						
-			 pedido.getInstance().setTotalPedido(totalPedido);
-		     dao.alterarPedido(pedido.getInstance());
+			 getPedido().getInstance().setTotalPedido(totalPedido);
+		     dao.alterarPedido(getPedido().getInstance());
 		     Pedido.listaPedidos.clear();
 			 em.getTransaction().commit();
 			 em.close();
@@ -132,6 +150,8 @@ public class PedidoController {
 	return "SUCESS";
 	}
 	
+
+/*--------------------------------------------- ITEM  DAO -----------------------------------------*/
 	
 	public List<Item> listarItem(){
 		
@@ -172,7 +192,7 @@ public class PedidoController {
 		em.getTransaction().commit();
 		em.close();
      
-		cadastrarPedidoItem(pedido.getInstance(), item);
+		cadastrarPedidoItem(getPedido().getInstance(), item);
 		logger.info("< cadastrarItem()");
 	
 	return "SUCESS";
@@ -204,6 +224,8 @@ public class PedidoController {
 		
 		logger.info("<excluirItem()");
 	}
+
+
 
 	
 	

@@ -135,9 +135,22 @@ public class PedidoController {
 
 
 	public void salvarPedido(){
+		
 		 System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaa meu deus do ceu");
+			EntityManager em = JPAUtil.getEntityManagerPedido();
+			PedidoDAO dao = new PedidoDAO(em);
+			em.getTransaction().begin();
+			pedidoWeb.setDataCadastro(Calendar.getInstance());
+			if(pedidoWeb.getIdpedido()!=0){
+				dao.alterarPedido(pedidoWeb);
+			}else{
+				dao.cadastrarPedido(pedidoWeb);
+			}
+			em.getTransaction().commit();
+			em.close();
+			carregarPedido();
+		}
 	
-	}
 
 
 	public String abrirPedido(int idpedido, String status){

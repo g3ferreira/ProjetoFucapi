@@ -49,7 +49,11 @@
 				
 					
 					
-					<h:commandButton value="Salvar" action="#{pedidoController.carregarPedido}">
+					<h:commandButton value="Salvar" action="#{pedidoController.salvarPedido}">
+							<f:ajax execute="@form" render	="@form :tabela" />
+					</h:commandButton>
+					
+					<h:commandButton value="Atualizar lista" action="#{pedidoController.carregarPedido}">
 							<f:ajax execute="@form" render	="@form :tabela" />
 					</h:commandButton>
 				</h:panelGrid>
@@ -58,7 +62,7 @@
 			
 		<h2>Listagem de Items do Cardápio</h2>
 		<h:form id="tabela">
-			<h:dataTable value="#{pedidoController.listaPedidos}" var="pedidos"
+			<h:dataTable value="#{pedidoController.listaPedidos}" var="pedidoWeb"
 				styleClass="dados" rowClasses="impar,par" >
 				<h:column>
 					<f:facet name="header"><h:outputText value="Data Pedido" /></f:facet>

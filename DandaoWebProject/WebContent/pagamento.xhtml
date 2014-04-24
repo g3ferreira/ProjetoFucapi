@@ -21,53 +21,63 @@
 		<div id="blocoConteudo">
 		<div class="container">
 		<h2>Pagamento do Pedido</h2>
-		<h:form id="dados">
+		<h:form id="dadosPedido">
 			<fieldset>
 				<legend>Dados do Pedido</legend>
 				<h:panelGrid columns="2">
-		
-					
 					<h:outputLabel value="Numero do Pedido:" for="idpedido"/>
-					<h:inputText id="idpedido" value="#{pedidoController.pedido.idpedido}"/>
+					<h:inputText id="idpedido" value="#{pedidoController.pedidoWeb.idpedido}"/> 
+						 
+						 	<h:outputLabel value="Data Pedido:" for="dataCadastro"/>
+						 							
+					<h:inputText id="dataCadastro"
+					 value="#{pedidoController.pedidoWeb.dataCadastro.time}" 
 					
-					<h:outputLabel value="Data Pedido:" for="datacadastro"/>
-						
-					<h:inputText id="datacadastro" value="#{pedidoController.pedido.datacadastro}" />
+					 readonly="true">
+					<f:convertDateTime pattern="dd/MM/yyyy"/>
+					</h:inputText>
+				
+				
+					<h:outputLabel value="Total: "  for="totalPedido"/>
+					<h:inputText id="totalPedido" value="#{pedidoController.pedidoWeb.totalPedido}"/>
 					
-					<h:outputLabel value="Total Pedido:" for="totalpedido"/>
-					<h:inputText id="totalpedido" value="#{pedidoController.pedido.totalpedido}"/>
-					    
-					    				    
-					<h:selectOneMenu id="status"  value="#{pedidoController.pedido.status}">  
+					<h:outputLabel value="Status: " for="status"/>
+					<h:selectOneMenu id="status"  value="#{pedidoController.pedidoWeb.status}">  
            			 	<f:selectItem itemLabel="Não Pago" itemValue="NP" />   
             		 	<f:selectItem itemLabel="Pago" itemValue="PG" />            		 	         			
         			</h:selectOneMenu>
+				
 					
-					<h:commandButton value="Salvar" action="#{pedidoController.salvarPedido}">
-						<f:ajax execute="@form" render="@form :tabela" />
+					
+					<h:commandButton value="Salvar" action="#{pedidoController.carregarPedido}">
+							<f:ajax execute="@form" render	="@form :tabela" />
 					</h:commandButton>
 				</h:panelGrid>
 			</fieldset>
 		</h:form>
 			
-		<h2>Listagem de Pedidos Pagos</h2>
+		<h2>Listagem de Items do Cardápio</h2>
 		<h:form id="tabela">
-			<h:dataTable value="#{pedidoController.pedido.listaPedidos}" var="pedido"
+			<h:dataTable value="#{pedidoController.listaPedidos}" var="pedidos"
 				styleClass="dados" rowClasses="impar,par" >
 				<h:column>
 					<f:facet name="header"><h:outputText value="Data Pedido" /></f:facet>
-					<h:outputText value="#{pedido.dataCadastro.time}">
+					<h:outputText value="#{pedidoWeb.dataCadastro.time}">
 						<f:convertDateTime pattern="dd/MM/yyyy"/>
 					</h:outputText>
 				</h:column>
 				<h:column>
-					<f:facet name="header"><h:outputText value="Numero do Pedido" /></f:facet>
-					#{pedido.idpedido}
+					<f:facet name="header"><h:outputText value="ID Pedido" /></f:facet>
+					#{pedidoWeb.idpedido}
 				</h:column>
-				
+
+				<h:column>
+					<f:facet name="header"><h:outputText value="Status" /></f:facet>
+					#{pedidoWeb.status}
+				</h:column>
 				<h:column>
 					<f:facet name="header"> <h:outputText value="Total Pedido" /></f:facet>
-					<h:outputText value="#{pedido.totalpedido}" >
+					<h:outputText value="#{pedidoWeb.totalPedido}" >
 						<f:convertNumber pattern="R$ #0.00"/>
 					</h:outputText>
 				</h:column>			
@@ -77,23 +87,23 @@
 								   value="Remover">
 						<f:ajax render="@form" />
 						<f:setPropertyActionListener 
-							target="#{pedidoController.pedido}" 
-							value="#{pedido}"/>
+							target="#{pedidoController.pedidoWeb}" 
+							value="#{pedidoWeb}"/>
 					</h:commandLink>
 				</h:column>
 				<h:column>
 					<h:commandLink value="Alterar">
-						<f:ajax render="@form :dados" />
+						<f:ajax render="@form :dadosPedido" />
 						<f:setPropertyActionListener 
-							target="#{pedidoController.pedido}" 
-							value="#{pedido}"/>
+							target="#{pedidoController.pedidoWeb}" 
+							value="#{pedidoWeb}"/>
 					</h:commandLink>
 				</h:column>
 			</h:dataTable>
 		</h:form>
 	</div>
 	</div>
-	<div id="cardapio-produto" >
+	<div id="pedido-produto" >
 		<marquee>
 		<image width="210" height="210" src="resources/imagens/xtudo.png" />
 		<image width="210" height="210" src="resources/imagens/misto.jpg" />

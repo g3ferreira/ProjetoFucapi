@@ -9,8 +9,11 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+import javax.persistence.EntityManager;
 import org.apache.commons.collections.ListUtils;
 
 import com.mchange.v2.util.CollectionUtils;
@@ -18,6 +21,7 @@ import com.mchange.v2.util.CollectionUtils;
 import br.com.dandaowebproject.model.dao.CardapioDAO;
 import br.com.dandaowebproject.model.dao.JPAUtil;
 import br.com.dandaowebproject.model.dao.PedidoDAO;
+import br.com.dandaowebproject.model.bean.Cardapio;
 import br.com.dandaowebproject.model.bean.Item;
 import br.com.dandaowebproject.model.bean.Pedido;
 import br.com.dandaowebproject.model.bean.PedidoItem;
@@ -31,7 +35,20 @@ public class PedidoController {
 	
 	public Item item ;
 	public PedidoItem pedidoItem;
+	private Pedido pedidoWeb = new Pedido();
+
 	private Pedido pedido;
+
+
+	public Pedido getPedidoWeb() {
+		return pedidoWeb;
+	}
+
+
+	public void setPedidoWeb(Pedido pedidoWeb) {
+		this.pedidoWeb = pedidoWeb;
+	}
+
 	
 
 	public Pedido getPedido() {
@@ -84,10 +101,6 @@ public class PedidoController {
 	
 
 
-	public void salvarPedido(){
-		 System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaa meu deus do ceu");
-	
-	}
 	
 
 	
@@ -101,14 +114,29 @@ public class PedidoController {
 //		return entityManager.getReference(Item.class, idpedido);
 //	}	
 
-
-	public List<Pedido> listarPedido(){
-		
+	public void carregarPedido(){
 		EntityManager em = JPAUtil.getEntityManagerPedido();
 		PedidoDAO dao = new PedidoDAO(em);
-		em.getTransaction().begin();
+		listaPedidos = dao.listarPedido();
+		em.close();
 		
-		return  dao.listarPedido();
+	} 
+	
+	public List<Pedido> listaPedidos= new ArrayList<Pedido>();
+
+	public List<Pedido> getListaPedidos() {
+		return listaPedidos;
+	}
+
+
+	public void setListaPedidos(List<Pedido> listaPedidos) {
+		this.listaPedidos = listaPedidos;
+	}
+
+
+	public void salvarPedido(){
+		 System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaa meu deus do ceu");
+	
 	}
 
 
@@ -117,7 +145,7 @@ public class PedidoController {
 		 manager.getTransaction().begin();
 		 PedidoDAO dao = new PedidoDAO(manager);
 		 setPedido(new Pedido());
-		 getPedido().setIdPedido(idpedido);
+		 getPedido().setIdpedido(idpedido);
 		 getPedido().setDataCadastro(Calendar.getInstance());
 		 getPedido().setStatus(status);
 		 getPedido().setInstance(getPedido());

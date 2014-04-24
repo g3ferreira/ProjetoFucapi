@@ -22,6 +22,18 @@ public class Pedido {
 	  @Id
 	  @GeneratedValue
 	  private int idpedido;
+	
+	  
+	public int getIdpedido() {
+		return idpedido;
+	}
+
+	public void setIdpedido(int idpedido) {
+		this.idpedido = idpedido;
+	}
+
+
+	@Temporal(TemporalType.DATE)
 	  private Calendar dataCadastro;
       @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
 	  private Collection<PedidoItem> pedidoItemList;
@@ -43,7 +55,6 @@ public class Pedido {
   	}
       
 
-  	
       
     public String getStatus() {
 		return status;
@@ -65,14 +76,6 @@ public class Pedido {
 	}
 
 
-	public int getIdPedido() {
-		return idpedido;
-	}
-
-
-	public void setIdPedido(int id) {
-		this.idpedido = id;
-	}
 
 
 	public Calendar getDataCadastro() {

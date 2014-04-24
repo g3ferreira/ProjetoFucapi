@@ -3,10 +3,13 @@ package br.com.dandaowebproject.resource;
 import java.util.ArrayList;
 
 import javax.servlet. Servlet;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import br.com.dandaowebproject.control.mb.PedidoController;
 import br.com.dandaowebproject.model.bean.Item;
@@ -130,14 +133,14 @@ public class PedidoResource {
 	 * @since 16/04/2014 
 	 * @version 1.0
 	 */
-
-	@GET
 	
+	@Consumes({"application/xml"})
+	@GET	
 	//public String inserirPedido(Long idpedido, String nomeProduto, int quantidade, double preco){
 		
 	@Path("/abrirpedido/{idpedido}/{status}")
 	@Produces("application/json")
-	public void abrirPedido(
+	public String abrirPedido(
 			@PathParam("idpedido") int idpedido,
 			@PathParam("status") String status){
 
@@ -148,7 +151,7 @@ public class PedidoResource {
 	
 			
 		 new  PedidoController().abrirPedido(idpedido, status);
-			System.out.println("<abrirPedido()");
+		return "executado";//	System.out.println("<abrirPedido()");
 			
 	}
 	

@@ -4,6 +4,5 @@
     <AssemblyPart x:Name="Microsoft.Phone.Controls" Source="Microsoft.Phone.Controls.dll" />
     <AssemblyPart x:Name="Microsoft.Phone.Controls.Toolkit" Source="Microsoft.Phone.Controls.Toolkit.dll" />
     <AssemblyPart x:Name="SqliteForWP8" Source="SqliteForWP8.dll" />
-    <AssemblyPart x:Name="Sqlite" Source="Sqlite.dll" />
   </Deployment.Parts>
 </Deployment>

@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\sqlite-net-wp8.3.8.3.100\build\windowsphone8\sqlite-net-wp8.props" Condition="Exists('..\packages\sqlite-net-wp8.3.8.3.100\build\windowsphone8\sqlite-net-wp8.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -137,7 +136,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="dbDandao.sqlite">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
@@ -185,15 +184,15 @@
     </Reference>
     <Reference Include="Sqlite, Version=255.255.255.255, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\sqlite-net-wp8.3.8.3.100\lib\windowsphone8\Sqlite.winmd</HintPath>
+      <HintPath>Bin\x86\Debug\Sqlite.winmd</HintPath>
     </Reference>
     <Reference Include="SqliteForWP8">
       <HintPath>C:\Users\Genilson Ferreira\Downloads\SQLiteForWP8\SqliteForWP8\SqliteForWP8\Bin\x86\Debug\SqliteForWP8.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <SDKReference Include="SQLite.WP80, Version=3.8.4.1">
-      <Name>SQLite for Windows Phone</Name>
+    <SDKReference Include="SQLite.WP80, Version=3.8.4.3">
+      <Name>SQLite for Windows Phone %28SQLite.WP80, Version=3.8.4.3%29</Name>
     </SDKReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
@@ -213,5 +212,4 @@
     <Error Condition="!Exists('..\packages\sqlite-net-wp8.3.8.3.100\build\windowsphone8\sqlite-net-wp8.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sqlite-net-wp8.3.8.3.100\build\windowsphone8\sqlite-net-wp8.props'))" />
     <Error Condition="!Exists('..\packages\sqlite-net-wp8.3.8.3.100\build\windowsphone8\sqlite-net-wp8.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sqlite-net-wp8.3.8.3.100\build\windowsphone8\sqlite-net-wp8.targets'))" />
   </Target>
-  <Import Project="..\packages\sqlite-net-wp8.3.8.3.100\build\windowsphone8\sqlite-net-wp8.targets" Condition="Exists('..\packages\sqlite-net-wp8.3.8.3.100\build\windowsphone8\sqlite-net-wp8.targets')" />
 </Project>

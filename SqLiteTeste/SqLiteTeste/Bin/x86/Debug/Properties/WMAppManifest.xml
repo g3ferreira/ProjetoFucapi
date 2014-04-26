@@ -28,12 +28,6 @@
         </TemplateFlip>
       </PrimaryToken>
     </Tokens>
-    <ActivatableClasses>
-      <InProcessServer>
-        <Path>Sqlite.dll</Path>
-        <ActivatableClass ActivatableClassId="Sqlite.Sqlite3" ThreadingModel="both" />
-      </InProcessServer>
-    </ActivatableClasses>
     <ScreenResolutions>
       <ScreenResolution Name="ID_RESOLUTION_WVGA" />
       <ScreenResolution Name="ID_RESOLUTION_WXGA" />

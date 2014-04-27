@@ -98,3 +98,13 @@ C:\Users\Genilson Ferreira\Desktop\SqLiteTeste\SqLiteTeste\obj\x86\Debug\SqLiteT
 C:\Users\Genilson Ferreira\Desktop\SqLiteTeste\SqLiteTeste\obj\x86\Debug\SqLiteTeste.pdb
 C:\Users\Genilson Ferreira\Desktop\SqLiteTeste\SqLiteTeste\obj\x86\Debug\XapCacheFile.xml
 C:\Users\Genilson Ferreira\Desktop\SqLiteTeste\SqLiteTeste\obj\x86\Debug\SqLiteTeste.csprojResolveAssemblyReference.cache
+C:\ProjetoFucapi\SqLiteTeste\SqLiteTeste\obj\x86\Debug\App.g.cs
+C:\ProjetoFucapi\SqLiteTeste\SqLiteTeste\obj\x86\Debug\CadUsuario.g.cs
+C:\ProjetoFucapi\SqLiteTeste\SqLiteTeste\obj\x86\Debug\MainPage.g.cs
+C:\ProjetoFucapi\SqLiteTeste\SqLiteTeste\obj\x86\Debug\Menu.g.cs
+C:\ProjetoFucapi\SqLiteTeste\SqLiteTeste\obj\x86\Debug\PedidoPage.g.cs
+C:\ProjetoFucapi\SqLiteTeste\SqLiteTeste\obj\x86\Debug\PedidoPivot.g.cs
+C:\ProjetoFucapi\SqLiteTeste\SqLiteTeste\obj\x86\Debug\UsuarioPivot.g.cs
+C:\ProjetoFucapi\SqLiteTeste\SqLiteTeste\obj\x86\Debug\SqLiteTeste.g.resources
+C:\ProjetoFucapi\SqLiteTeste\SqLiteTeste\obj\x86\Debug\SqLiteTeste.Resources.AppResources.resources
+C:\ProjetoFucapi\SqLiteTeste\SqLiteTeste\obj\x86\Debug\SqLiteTeste.csproj.GenerateResource.Cache

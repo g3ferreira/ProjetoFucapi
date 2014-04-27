@@ -10,28 +10,22 @@ using Microsoft.Phone.Shell;
 using System.IO;
 using Windows.Storage;
 using SQLite;
-using System.Threading;
 
 namespace SqLiteTeste
 {
-    public partial class PedidoPivot : PhoneApplicationPage
+    public partial class UsuarioPivot : PhoneApplicationPage
     {
-public PedidoPivot()
+        public UsuarioPivot()
         {
-        
             InitializeComponent();
-            this.lstpProdutos.ItemsSource = Produtos;
-
-         
         }
-
 
         public const string ip = "192.168.43.140:8087";
         double totalPedido;
         bool pedidoFinalizado = false;
 
         bool pedidoInserido = false;
-        
+
         String[] Produtos = { "X-SALADA","X-BACON",
                               "X-BURGER","X-TUDO",
                               "SOPA","COCA-COLA",
@@ -71,22 +65,22 @@ public PedidoPivot()
 
             List<Item> retrievedPedido = dbConn.Table<Item>().ToList<Item>();
             /// Clear the list box that will show all the tasks.
-            ListPedido.Items.Clear();
+            ListUsuario.Items.Clear();
 
-                foreach (var t in retrievedPedido)
-                {
-                    ListPedido.Items.Add(t);
-                }
+            foreach (var t in retrievedPedido)
+            {
+                ListUsuario.Items.Add(t);
+            }
 
 
-               
-            
+
+
         }
 
         public void insertPedido()
         {
 
-               // Create a new task.
+            // Create a new task.
             Pedido pedido = new Pedido()
             {
                 status = "NP"
@@ -98,37 +92,36 @@ public PedidoPivot()
             pedidoInserido = true;
             txtbIDPedido.Text = selectionIDPedido().ToString();
 
-            
+
         }
 
 
         public void insertItem()
         {
-             // Create a new task.
-            Item item = new Item()
+            // Create a new task.
+            Usuario item = new Usuario()
             {
-                idpedidoitem = selectionIDPedido(),
-                nomeproduto = lstpProdutos.SelectedItem.ToString(),
-                quantidade = Convert.ToInt32(txtQtd.Text),
-                observacao = txtObservacao.Text,
-                preco = Convert.ToDouble(Precos[lstpProdutos.SelectedIndex]),
-                total = Convert.ToDouble(txtQtd.Text) * Convert.ToDouble(Precos[lstpProdutos.SelectedIndex])
-               
+                idusuario = selectionIDUsuario(),
+                login = txtLogin.Text,
+                senha = txtSenha.Text,
+                nome = txtNome.Text,
+                telefone = txtTelefone.Text,
+                endereco = txtEndereco.Text
             };
             /// Insert the new task in the Task table.
             dbConn.Insert(item);
             /// Retrieve the task list from the database.
-            List<Item> retrievedTaskPedido = dbConn.Table<Item>().ToList<Item>();
+            List<Usuario> retrievedTaskPedido = dbConn.Table<Usuario>().ToList<Usuario>();
             /// Clear the list box that will show all the tasks.
             /// 
-            ListPedido.Items.Clear();
+            ListUsuario.Items.Clear();
             foreach (var t in retrievedTaskPedido)
             {
-                ListPedido.Items.Add(t);
+                ListUsuario.Items.Add(t);
             }
-            ListPedido.Visibility = Visibility.Visible;
-            totalPedido = totalPedido + (Convert.ToDouble(txtQtd.Text) * Convert.ToDouble(Precos[lstpProdutos.SelectedIndex]));
-            txtbTotalPedido.Text = totalPedido.ToString();
+            ListUsuario.Visibility = Visibility.Visible;
+            txtIDUsuáio.Text = selectionIDUsuario().ToString();
+     
         }
 
 
@@ -146,7 +139,7 @@ public PedidoPivot()
             sqlComm.CommandText = "delete from item";
             List<Item> retrievedTasks = sqlComm.ExecuteQuery<Item>();
 
-                if (retrievedTasks.Count == 0) ListPedido.Items.Clear();
+            if (retrievedTasks.Count == 0) ListUsuario.Items.Clear();
         }
 
         public void deletePedido()
@@ -155,16 +148,16 @@ public PedidoPivot()
             sqlComm.CommandText = "delete from pedido";
             List<Item> retrievedTasks = sqlComm.ExecuteQuery<Item>();
 
-            if (retrievedTasks.Count == 0) ListPedido.Items.Clear();
+            if (retrievedTasks.Count == 0) ListUsuario.Items.Clear();
         }
 
 
-        public int selectionIDPedido()
+        public int selectionIDUsuario()
         {
             SQLiteCommand sqlComm = new SQLiteCommand(dbConn);
-            sqlComm.CommandText = "select *  from Pedido order by idpedido desc";
-            List<Pedido> pedido = sqlComm.ExecuteQuery<Pedido>();
-            return pedido[0].idpedido;
+            sqlComm.CommandText = "select *  from Usuario order by idusuario desc";
+            List<Usuario> pedido = sqlComm.ExecuteQuery<Usuario>();
+            return pedido[0].idusuario;
             //    if (retrievedTasks.Count == 0) PessoaListBox.Items.Clear();
         }
 
@@ -199,27 +192,27 @@ public PedidoPivot()
             {
                 if (pedidoInserido == true)
                 {
-                   
-                    insertItem();              
-                 //   inserirItemsWS();
+
+                    insertItem();
+                    //   inserirItemsWS();
 
                 }
                 else
                 {
                     insertPedido();
-                 //   cadastrarPedidoWS();
+                    //   cadastrarPedidoWS();
                     insertItem();
-                //    inserirItemsWS();
-                
+                    //    inserirItemsWS();
+
                 }
-                
+
             }
-            else 
+            else
             {
                 insertPedido();
-            //    cadastrarPedidoWS();
+                //    cadastrarPedidoWS();
                 insertItem();
-          //      inserirItemsWS();
+                //      inserirItemsWS();
             }
         }
 
@@ -254,23 +247,23 @@ public PedidoPivot()
 
             int id = selectionIDPedido();
             string status = selectionStatusPedido();
-            string Url = @"http://"+ip+"/DandaoWebProject/ws/pedido/abrirpedido/" + id + "/" + status;
+            string Url = @"http://" + ip + "/DandaoWebProject/ws/pedido/abrirpedido/" + id + "/" + status;
 
-     
+
             WebClient wc = new WebClient();
             wc.DownloadStringCompleted += new DownloadStringCompletedEventHandler(wc_DownloadStringCompleted);
             wc.DownloadStringAsync(new Uri(Url));
 
 
-           
-          //  finalizarPedido();
-       
+
+            //  finalizarPedido();
+
         }
 
-        public void inserirItemsWS() 
+        public void inserirItemsWS()
         {
-          
-            foreach (Item item in ListPedido.Items)
+
+            foreach (Item item in ListUsuario.Items)
             {
                 int iditem = item.iditem;
                 string nomeprod = item.nomeproduto;
@@ -279,14 +272,14 @@ public PedidoPivot()
                 double qtd = item.quantidade;
                 double totalitem = item.total;
                 string url = @"http://" + ip + "/DandaoWebProject/ws/pedido/cadastraritem/" + iditem + "/" + nomeprod + "/" + obser + "/" + preco + "/" + qtd + "/" + totalitem;
-                
+
                 WebClient wcInsertitem = new WebClient();
                 wcInsertitem.DownloadStringCompleted += new DownloadStringCompletedEventHandler(wcInsertitem_DownloadStringCompleted);
 
                 wcInsertitem.DownloadStringAsync(new Uri(url));
 
             }
-             
+
         }
 
         public void finalizarPedido()
@@ -294,7 +287,7 @@ public PedidoPivot()
             WebClient wcFinalizaPedido = new WebClient();
             wcFinalizaPedido.DownloadStringCompleted += new DownloadStringCompletedEventHandler(wcFinalizaPedido_DownloadStringCompleted);
             wcFinalizaPedido.DownloadStringAsync(new Uri(@"http://" + ip + "/DandaoWebProject/ws/pedido/finalizarpedido"));
-            
+
 
         }
 
@@ -310,7 +303,7 @@ public PedidoPivot()
         {
             string a = e.Result;
 
-          
+
         }
 
         private void wcInsertitem_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
@@ -320,31 +313,28 @@ public PedidoPivot()
                 string a = e.Result;
 
             }
-            catch (Exception ea){
-              // ignores erros            
+            catch (Exception ea)
+            {
+                // ignores erros            
             }
-            
+
 
         }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }
-
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    

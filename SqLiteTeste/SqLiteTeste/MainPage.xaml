@@ -41,66 +41,19 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="SQLITE" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0"/>
-            <TextBlock Text="cad. pessoa" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock Text="dandão lanches - você sempre em primeiro lugar" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <StackPanel Margin="0,545,0,0">
-                <ListBox Width="auto" Height="auto" Name="PessoaListBox">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="ID: "/>
-                                <TextBlock Text="{Binding Id}"/>
-                                <TextBlock Text="Nome: "/>
-                                <TextBlock Text="{Binding Nome}"/>
-                                <TextBlock Text="Idade: "/>
-                                <TextBlock Text="{Binding Idade}"/>
-                                <TextBlock Text="Data: "/>
-                                <TextBlock Text="{Binding Data}"/>
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,0,0">
+                  <TextBox Name="txLogin" HorizontalAlignment="Left" Height="72" Margin="92,146,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="354"/>
+            <TextBlock Name="txtbNome" HorizontalAlignment="Left" Margin="13,162,0,0" TextWrapping="Wrap" Text="login" VerticalAlignment="Top" FontSize="28"/>
 
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-            </StackPanel>
-            <TextBox Name="txtNome" HorizontalAlignment="Left" Height="72" Margin="102,1,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="354"/>
-            <TextBlock Name="txtbNome" HorizontalAlignment="Left" Margin="12,16,0,0" TextWrapping="Wrap" Text="Nome:" VerticalAlignment="Top" FontSize="28"/>
-
-            <TextBox Name="txtIdade" HorizontalAlignment="Left" Height="72" Margin="102,78,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="354" KeyUp="txtIdade_KeyUp"/>
-            <TextBlock Name="txtbIdade" HorizontalAlignment="Left" Margin="12,94,0,0" TextWrapping="Wrap" Text="Idade:" VerticalAlignment="Top" FontSize="28"/>
-            <Button Content="DELETE" HorizontalAlignment="Left" Margin="286,155,0,0" VerticalAlignment="Top" Click="Button_Click"/>
-            <Button Name="btnPedido" Content="Pedido" HorizontalAlignment="Left" Margin="59,155,0,0" VerticalAlignment="Top" Click="btnPedido_Click" />
-            <TextBox x:Name="txtNProd" HorizontalAlignment="Left" Height="72" Margin="102,241,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="354"/>
-            <TextBlock x:Name="txtbNome_Copy" HorizontalAlignment="Left" Margin="12,256,0,0" TextWrapping="Wrap" Text="Prod:" VerticalAlignment="Top" FontSize="28"/>
-            <TextBox x:Name="txtQtd" HorizontalAlignment="Left" Height="72" Margin="102,301,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="354"/>
-            <TextBlock x:Name="txtbNome_Copy1" HorizontalAlignment="Left" Margin="12,316,0,0" TextWrapping="Wrap" Text="Qtd:" VerticalAlignment="Top" FontSize="28"/>
-            <TextBox x:Name="txtPrecop" HorizontalAlignment="Left" Height="72" Margin="100,361,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="354"/>
-            <TextBlock x:Name="txtbNome_Copy2" HorizontalAlignment="Left" Margin="10,376,0,0" TextWrapping="Wrap" Text="Prod:" VerticalAlignment="Top" FontSize="28"/>
-            <StackPanel Margin="10,438,-10,107">
-                <ListBox Width="auto" Height="auto" x:Name="PedidoListBox">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="ID: "/>
-                                <TextBlock Text="{Binding idpedido}"/>
-                                <TextBlock Text="Prod.: "/>
-                                <TextBlock Text="{Binding nomeproduto}"/>
-                                <TextBlock Text="Idade: "/>
-                                <TextBlock Text="{Binding quantidade}"/>
-                                <TextBlock Text="Preço"/>
-                                <TextBlock Text="{Binding preco}"/>
-                                <TextBlock Text="Data: "/>
-                                <TextBlock Text="{Binding data}"/>
-
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-            </StackPanel>
-
+            <TextBox Name="txtSenha" HorizontalAlignment="Left" Height="72" Margin="92,223,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="354"/>
+            <TextBlock HorizontalAlignment="Left" Margin="4,241,0,0" TextWrapping="Wrap" Text="senha: " VerticalAlignment="Top" FontSize="28"/>
+            <Button Content="go pedido" HorizontalAlignment="Left" Margin="276,300,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+            <Button Name="btnLogar" Content="entrar" HorizontalAlignment="Left" Margin="149,300,0,0" VerticalAlignment="Top" Click="btnLogar_Click" />
+         
         </Grid>
 
         <!--Uncomment to see an alignment grid to help ensure your controls are

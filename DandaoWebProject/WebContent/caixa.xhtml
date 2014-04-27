@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:h="http://java.sun.com/jsf/html">
+	<f:view contentType="text/html"/>
+	<h:head>                                         
+		<title>Dandão Lanches - Caixa</title>
+		<h:outputStylesheet library="css" name="grid.css"/>
+
+		<h:outputStylesheet library="css" name="style.css"/>
+	</h:head>
+	<h:body>
+	
+	<div id="blocoCabecalho">
+		<div class="container">
+			<h:graphicImage library="imagens" name="genilson2.png" 	id="logoCompany"/>
+		</div>
+	</div>
+	
+		<div id="blocoConteudo">
+		<div class="container">
+		<h2>Caixa</h2>
+		<h:form id="dados">
+			<fieldset>
+				<legend>Informações do Caixa</legend>
+				<h:panelGrid columns="2">
+					<h:outputLabel value="Id Caixa:" for="idCaixa" 
+					     rendered="#{caixaController.caixa.idCaixa != null}"/>
+					<h:inputText id="idCaixa" 
+						 value="#{caixaController.caixa.idCaixa}"
+						 rendered="#{caixaController.caixa.idCaixa != null}"
+						 readonly="true"/>
+					<h:outputLabel value="Data Abertura:" for="dataAbertura" 
+					     rendered="#{caixaController.caixa.idCaixa != null}"/>
+					<h:inputText id="dataAbertura" 
+						 value="#{caixaController.caixa.dataAbertura.time}"
+						 rendered="#{caixaController.caixa.idCaixa != null}"
+						 readonly="true">
+						 <f:convertDateTime pattern="dd/MM/yyyy"/>
+				    <h:outputLabel value="Data Fechamento:" for="dataFechamento" 
+					     rendered="#{caixaController.caixa.idCaixa != null}"/>
+					<h:inputText id="dataFechamento" 
+						 value="#{caixaController.caixa.dataFechamento.time}"
+						 rendered="#{caixaController.caixa.idCaixa != null}"
+						 readonly="true">
+						 <f:convertDateTime pattern="dd/MM/yyyy"/>
+					</h:inputText>
+					<h:outputLabel value="Valor Abertura:" for="valorAbertura"/>
+					<h:inputText id="valorAbertura" value="#{caixaController.caixa.valorAbertura}"/>
+					<h:outputLabel value="Valor Atual:" for="valorAtual"/>
+					<h:inputText id="valorAtual" value="#{caixaController.caixa.valorAtual}"/>
+					<h:outputLabel value="Valor Final do Caixa:" for="valorFinalCaixa"/>
+					<h:inputText id="valorFinalCaixa" value="#{caixaController.caixa.valorFinalCaixa}"/>
+										
+					
+					<h:commandButton value="Salvar" action="#{cardapioController.salvar}">
+						<f:ajax execute="@form" render	="@form :tabela" />
+					</h:commandButton>
+				</h:panelGrid>
+			</fieldset>
+		</h:form>
+			
+		<h2>Listagem de Items do Cardápio</h2>
+		<h:form id="tabela">
+			<h:dataTable value="#{cardapioController.listaCardapio}" var="cardapio"
+				styleClass="dados" rowClasses="impar,par" >
+				<h:column>
+					<f:facet name="header"><h:outputText value="Cadastro" /></f:facet>
+					<h:outputText value="#{cardapio.dataCadastro.time}">
+						<f:convertDateTime pattern="dd/MM/yyyy"/>
+					</h:outputText>
+				</h:column>
+				<h:column>
+					<f:facet name="header"><h:outputText value="Nome" /></f:facet>
+					#{cardapio.nome}
+				</h:column>
+
+				<h:column>
+					<f:facet name="header"><h:outputText value="Descrição" /></f:facet>
+					#{cardapio.descricao}
+				</h:column>
+				<h:column>
+					<f:facet name="header"> <h:outputText value="Preço" /></f:facet>
+					<h:outputText value="#{cardapio.preco}" >
+						<f:convertNumber pattern="R$ #0.00"/>
+					</h:outputText>
+				</h:column>			
+				<h:column>
+					<f:facet name="header"> <h:outputText value="Tipo" /></f:facet>
+					#{cardapio.tipo}
+				</h:column>			
+				<h:column>
+					<h:commandLink action="#{cardapioController.excluir}" 
+								   value="Remover">
+						<f:ajax render="@form" />
+						<f:setPropertyActionListener 
+							target="#{cardapioController.cardapio}" 
+							value="#{cardapio}"/>
+					</h:commandLink>
+				</h:column>
+				<h:column>
+					<h:commandLink value="Alterar">
+						<f:ajax render="@form :dados" />
+						<f:setPropertyActionListener 
+							target="#{cardapioController.cardapio}" 
+							value="#{cardapio}"/>
+					</h:commandLink>
+				</h:column>
+			</h:dataTable>
+		</h:form>
+	</div>
+	</div>
+	<div id="cardapio-produto" >
+		<marquee>
+		<image width="210" height="210" src="resources/imagens/xtudo.png" />
+		<image width="210" height="210" src="resources/imagens/misto.jpg" />
+		<image width="210" height="210" src="resources/imagens/drinks.jpg" />
+		<image width="210" height="210" src="resources/imagens/moussechoco.jpg" />
+		<image width="210" height="210" src="resources/imagens/moussemorango.jpg" />
+		<image width="210" height="210" src="resources/imagens/refris.jpg" />
+		<image width="210" height="210" src="resources/imagens/xsalada.jpg" />
+		<image width="210" height="210" src="resources/imagens/kikao.jpg" />
+		 </marquee>
+	</div>
+<!--	<div id="blocoRodape">
+ 	<div class="container" >
+		<p>Copyright 2013. Todos os direitos reservados</p>
+	</div>
+	</div> -->
+	</h:body>
+</html>

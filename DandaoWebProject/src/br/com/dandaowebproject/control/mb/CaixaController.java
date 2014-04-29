@@ -22,6 +22,14 @@ public class CaixaController {
 public List<Caixa> listaCaixa = new ArrayList<Caixa>();
 	
 	
+	public List<Caixa> getListaCaixa() {
+	return listaCaixa;
+}
+
+public void setListaCaixa(List<Caixa> listaCaixa) {
+	this.listaCaixa = listaCaixa;
+}
+
 	public List<Caixa> getListaCardapio() {
 		return listaCaixa;
 	}

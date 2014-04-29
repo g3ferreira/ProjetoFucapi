@@ -25,93 +25,86 @@
 			<fieldset>
 				<legend>Informações do Caixa</legend>
 				<h:panelGrid columns="2">
-					<h:outputLabel value="Id Caixa:" for="idCaixa" 
-					     rendered="#{caixaController.caixa.idCaixa != null}"/>
-					<h:inputText id="idCaixa" 
-						 value="#{caixaController.caixa.idCaixa}"
-						 rendered="#{caixaController.caixa.idCaixa != null}"
-						 readonly="true"/>
-					<h:outputLabel value="Data Abertura:" for="dataAbertura" 
-					     rendered="#{caixaController.caixa.idCaixa != null}"/>
-					<h:inputText id="dataAbertura" 
-						 value="#{caixaController.caixa.dataAbertura.time}"
-						 rendered="#{caixaController.caixa.idCaixa != null}"
-						 readonly="true">
-						 <f:convertDateTime pattern="dd/MM/yyyy"/>
-				    <h:outputLabel value="Data Fechamento:" for="dataFechamento" 
-					     rendered="#{caixaController.caixa.idCaixa != null}"/>
+					<h:outputLabel value="Id Caixa:" for="idCaixa"/> 
+			<!-- 		     rendered="#{caixaController.caixa.idCaixa != null}"/> -->
+
+					<h:inputText id="idCaixa" value="#{caixaController.caixa.idCaixa}"/>
+			       <h:outputLabel value="Data Fechamento:" for="dataFechamento" />
+					   <!--   rendered="#{caixaController.caixa.idCaixa != null}"/> -->
 					<h:inputText id="dataFechamento" 
 						 value="#{caixaController.caixa.dataFechamento.time}"
-						 rendered="#{caixaController.caixa.idCaixa != null}"
 						 readonly="true">
 						 <f:convertDateTime pattern="dd/MM/yyyy"/>
 					</h:inputText>
+
+
 					<h:outputLabel value="Valor Abertura:" for="valorAbertura"/>
 					<h:inputText id="valorAbertura" value="#{caixaController.caixa.valorAbertura}"/>
 					<h:outputLabel value="Valor Atual:" for="valorAtual"/>
 					<h:inputText id="valorAtual" value="#{caixaController.caixa.valorAtual}"/>
-					<h:outputLabel value="Valor Final do Caixa:" for="valorFinalCaixa"/>
+					<h:outputLabel value="Valor Fechamento:" for="valorFinalCaixa"/>
 					<h:inputText id="valorFinalCaixa" value="#{caixaController.caixa.valorFinalCaixa}"/>
-										
+			
 					
-					<h:commandButton value="Salvar" action="#{cardapioController.salvar}">
+					<h:commandButton value="Salvar" action="#{caixaController.salvar}">
 						<f:ajax execute="@form" render	="@form :tabela" />
 					</h:commandButton>
 				</h:panelGrid>
 			</fieldset>
 		</h:form>
-			
-		<h2>Listagem de Items do Cardápio</h2>
+				
+		<h2>Movimentação do Caixa</h2>
 		<h:form id="tabela">
-			<h:dataTable value="#{cardapioController.listaCardapio}" var="cardapio"
+			<h:dataTable value="#{caixaController.listaCaixa}" var="caixa"
 				styleClass="dados" rowClasses="impar,par" >
 				<h:column>
 					<f:facet name="header"><h:outputText value="Cadastro" /></f:facet>
-					<h:outputText value="#{cardapio.dataCadastro.time}">
+					<h:outputText value="#{caixa.dataAbertura.time}">
 						<f:convertDateTime pattern="dd/MM/yyyy"/>
 					</h:outputText>
 				</h:column>
 				<h:column>
-					<f:facet name="header"><h:outputText value="Nome" /></f:facet>
-					#{cardapio.nome}
-				</h:column>
-
-				<h:column>
-					<f:facet name="header"><h:outputText value="Descrição" /></f:facet>
-					#{cardapio.descricao}
-				</h:column>
-				<h:column>
-					<f:facet name="header"> <h:outputText value="Preço" /></f:facet>
-					<h:outputText value="#{cardapio.preco}" >
+					<f:facet name="header"><h:outputText value="Valor Abertura" /></f:facet>
+							<h:outputText value="#{caixa.valorAbertura}" >
 						<f:convertNumber pattern="R$ #0.00"/>
 					</h:outputText>
-				</h:column>			
+	
+					</h:column>
 				<h:column>
-					<f:facet name="header"> <h:outputText value="Tipo" /></f:facet>
-					#{cardapio.tipo}
-				</h:column>			
+					<f:facet name="header"><h:outputText value="Valor Atual" /></f:facet>
+							<h:outputText value="#{caixa.valorAtual}" >
+						<f:convertNumber pattern="R$ #0.00"/>
+					</h:outputText>
+	
+					</h:column>
 				<h:column>
-					<h:commandLink action="#{cardapioController.excluir}" 
+					<f:facet name="header"> <h:outputText value="Valor Fechamento" /></f:facet>
+					<h:outputText value="#{caixa.valorFinalCaixa}" >
+						<f:convertNumber pattern="R$ #0.00"/>
+					</h:outputText>
+				</h:column>
+				<h:column>
+					<h:commandLink action="#{caixaController.excluir}" 
 								   value="Remover">
 						<f:ajax render="@form" />
 						<f:setPropertyActionListener 
-							target="#{cardapioController.cardapio}" 
-							value="#{cardapio}"/>
+							target="#{caixaController.caixa}" 
+							value="#{caixa}"/>
 					</h:commandLink>
 				</h:column>
 				<h:column>
 					<h:commandLink value="Alterar">
 						<f:ajax render="@form :dados" />
 						<f:setPropertyActionListener 
-							target="#{cardapioController.cardapio}" 
-							value="#{cardapio}"/>
+							target="#{caixaController.caixa}" 
+							value="#{caixa}"/>
 					</h:commandLink>
 				</h:column>
 			</h:dataTable>
 		</h:form>
 	</div>
 	</div>
-	<div id="cardapio-produto" >
+	<div id="caixa-produto">
 		<marquee>
 		<image width="210" height="210" src="resources/imagens/xtudo.png" />
 		<image width="210" height="210" src="resources/imagens/misto.jpg" />
@@ -123,10 +116,11 @@
 		<image width="210" height="210" src="resources/imagens/kikao.jpg" />
 		 </marquee>
 	</div>
+	
 <!--	<div id="blocoRodape">
  	<div class="container" >
 		<p>Copyright 2013. Todos os direitos reservados</p>
 	</div>
-	</div> -->
+	</div>--> 
 	</h:body>
 </html>

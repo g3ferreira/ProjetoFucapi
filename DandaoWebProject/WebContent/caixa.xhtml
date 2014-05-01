@@ -28,15 +28,8 @@
 					<h:outputLabel value="Id Caixa:" for="idCaixa"/> 
 			<!-- 		     rendered="#{caixaController.caixa.idCaixa != null}"/> -->
 
-					<h:inputText id="idCaixa" value="#{caixaController.caixa.idCaixa}"/>
-			       <h:outputLabel value="Data Fechamento:" for="dataFechamento" />
-					   <!--   rendered="#{caixaController.caixa.idCaixa != null}"/> -->
-					<h:inputText id="dataFechamento" 
-						 value="#{caixaController.caixa.dataFechamento.time}"
-						 readonly="true">
-						 <f:convertDateTime pattern="dd/MM/yyyy"/>
-					</h:inputText>
-
+					<h:inputText id="idCaixa" value="#{caixaController.caixa.idCaixa}" readonly ="true"/>
+			    
 
 					<h:outputLabel value="Valor Abertura:" for="valorAbertura"/>
 					<h:inputText id="valorAbertura" value="#{caixaController.caixa.valorAbertura}"/>

@@ -100,7 +100,18 @@ public class PedidoDAO {
 		Query query = entityManager.createQuery(jpql);
 		return (ArrayList<Pedido>) query.getResultList();
 	}
+
 	
+	public  double somaTotalPedidos(){
+		System.out.println("AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII");
+
+		String jpql = "Select sum(totalpedido) from Pedido where status = 'PG'";
+		Query query = entityManager.createQuery(jpql);
+		System.out.println("Soma total First Result"+query.getFirstResult());
+		System.out.println("somaaTotalPedidos"+Double.valueOf(query.getFirstResult()));
+		return Double.valueOf(query.getFirstResult());
+		}
+
 	
 	
 }

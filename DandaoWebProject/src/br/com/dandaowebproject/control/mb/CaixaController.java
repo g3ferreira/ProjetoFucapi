@@ -68,11 +68,13 @@ public void setListaCaixa(List<Caixa> listaCaixa) {
 	}
 	//----------------------------------------------------------------------//
 		public void salvar(){
-		System.out.println("ENTROUUUUUUUU");
+	
 		EntityManager em = JPAUtil.getEntityManagerCaixa();
 		CaixaDAO dao = new CaixaDAO(em);
 		em.getTransaction().begin();
 		caixa.setDataAbertura(Calendar.getInstance());
+		caixa.setValorAtual(dao.valorTotalCaixa());
+		
 		if(caixa.getIdCaixa()!=null){
 			dao.alterar(caixa);
 		}else{

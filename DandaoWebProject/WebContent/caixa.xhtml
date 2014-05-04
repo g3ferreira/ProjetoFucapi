@@ -35,13 +35,22 @@
 					<h:inputText id="valorAbertura" value="#{caixaController.caixa.valorAbertura}"/>
 					<h:outputLabel value="Valor Atual:" for="valorAtual"/>
 					<h:inputText id="valorAtual" value="#{caixaController.caixa.valorAtual}"/>
-					<h:outputLabel value="Valor Fechamento:" for="valorFinalCaixa"/>
-					<h:inputText id="valorFinalCaixa" value="#{caixaController.caixa.valorFinalCaixa}"/>
-			
+					
+					<h:outputLabel value="Status: " for="status"/>
+					<h:selectOneMenu id="status"  value="#{caixaController.caixa.status}">  
+           			 	<f:selectItem itemLabel="Abrir" itemValue="Aberto" />   
+            		 	<f:selectItem itemLabel="Fechar" itemValue="Fechado" />            		 	         			
+        			</h:selectOneMenu>
+					
 					
 					<h:commandButton value="Salvar" action="#{caixaController.salvar}">
-						<f:ajax execute="@form" render	="@form :tabela" />
+						<f:ajax execute="@form" render="@form :tabela" />
 					</h:commandButton>
+					
+					<h:commandButton value="Atualizar lista" action="#{caixaController.carregarCaixa}">
+							<f:ajax execute="@form" render="@form :tabela" />
+					</h:commandButton>
+					
 				</h:panelGrid>
 			</fieldset>
 		</h:form>
@@ -51,11 +60,19 @@
 			<h:dataTable value="#{caixaController.listaCaixa}" var="caixa"
 				styleClass="dados" rowClasses="impar,par" >
 				<h:column>
-					<f:facet name="header"><h:outputText value="Cadastro" /></f:facet>
+					<f:facet name="header"><h:outputText value="Data Abertura" /></f:facet>
 					<h:outputText value="#{caixa.dataAbertura.time}">
 						<f:convertDateTime pattern="dd/MM/yyyy"/>
 					</h:outputText>
 				</h:column>
+				
+				<h:column>
+					<f:facet name="header"><h:outputText value="Data Fechamento" /></f:facet>
+					<h:outputText value="#{caixa.dataFechamento.time}">
+						<f:convertDateTime pattern="dd/MM/yyyy"/>
+					</h:outputText>
+				</h:column>
+				
 				<h:column>
 					<f:facet name="header"><h:outputText value="Valor Abertura" /></f:facet>
 							<h:outputText value="#{caixa.valorAbertura}" >
@@ -76,6 +93,13 @@
 						<f:convertNumber pattern="R$ #0.00"/>
 					</h:outputText>
 				</h:column>
+				
+				<h:column>
+					<f:facet name="header"> <h:outputText value="Status" /></f:facet>
+					<h:outputText value="#{caixaController.caixa.status}"/>
+					
+				</h:column>
+				
 				<h:column>
 					<h:commandLink action="#{caixaController.excluir}" 
 								   value="Remover">

@@ -3,6 +3,7 @@ package br.com.dandaowebproject.model.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -47,8 +48,6 @@ private EntityManager entityManager;
 	public double valorTotalCaixa(){
 		
 		ConnectionFactory conn = new ConnectionFactory();
-		System.out.println(">efetuarLogin()");
-		
 		
 			Connection conexao = null;
 			PreparedStatement pstmt = null;
@@ -64,7 +63,7 @@ private EntityManager entityManager;
 				}
 				
 			} catch (Exception e) {
-				System.out.println("Erro ao efetuar login: " + e);
+				System.out.println("Erro : " + e);
 				e.printStackTrace();
 			} finally {
 				conn.fecharConexao(conexao, pstmt, rs);

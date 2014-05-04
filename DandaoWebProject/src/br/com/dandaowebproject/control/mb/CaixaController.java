@@ -72,17 +72,22 @@ public void setListaCaixa(List<Caixa> listaCaixa) {
 		EntityManager em = JPAUtil.getEntityManagerCaixa();
 		CaixaDAO dao = new CaixaDAO(em);
 		em.getTransaction().begin();
+		
 		caixa.setDataAbertura(Calendar.getInstance());
 		caixa.setValorAtual(dao.valorTotalCaixa());
-		
 		if(caixa.getIdCaixa()!=null){
-			dao.alterar(caixa);
+
+			if(caixa.getStatus().equals("Fechado")){
+				caixa.setDataFechamento(Calendar.getInstance());
+				caixa.setValorFinalCaixa(caixa.getValorAtual()+ caixa.getValorAbertura());
+			}
+				dao.alterar(caixa);
 		}else{
 			dao.cadastrar(caixa);
 		}
 		em.getTransaction().commit();
 		em.close();
-		caixa  = new Caixa();
+		//caixa  = new Caixa();
 		carregarCaixa();
 	}
 	//--------------------------------------------------------------------//

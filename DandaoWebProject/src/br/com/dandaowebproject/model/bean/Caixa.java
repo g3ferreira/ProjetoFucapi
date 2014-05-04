@@ -26,8 +26,11 @@ public class Caixa {
 	private double valorFinalCaixa;
 	
 	private static Caixa instance;
+	private String status;
 		
-	  	public static void setInstance(Caixa instance) {
+
+
+		public static void setInstance(Caixa instance) {
 			Caixa.instance = instance;
 		}
 
@@ -76,5 +79,12 @@ public class Caixa {
 	public void setValorAtual(double valorAtual) {
 		this.valorAtual = valorAtual;
 	}
+  	public String getStatus() {
+	return status;
+  	}
+
+  	public void setStatus(String status) {
+	this.status = status;
+  	}
 	
 }

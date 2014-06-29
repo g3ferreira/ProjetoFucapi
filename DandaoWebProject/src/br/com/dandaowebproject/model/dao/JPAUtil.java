@@ -11,6 +11,21 @@ public class JPAUtil {
 	private static EntityManagerFactory emf = Persistence
 			.createEntityManagerFactory("cardapio");
 
+	private static EntityManagerFactory emfPedido = Persistence
+			.createEntityManagerFactory("pedido");
+
+	
+	private static EntityManagerFactory emfCaixa = Persistence
+			.createEntityManagerFactory("caixa");
+	
+	private static EntityManagerFactory emfOferta = Persistence
+			.createEntityManagerFactory("oferta");
+	
+	private static EntityManagerFactory emfUsuario = Persistence
+			.createEntityManagerFactory("usuario");
+
+
+
 	/**
 	 * Metodo responsavel pela criacao de conexoes
 	 * @return conexao para acesso ao SGBD
@@ -18,13 +33,6 @@ public class JPAUtil {
 	public static EntityManager getEntityManager() {
 		return emf.createEntityManager();
 	}
-
-	private static EntityManagerFactory emfPedido = Persistence
-			.createEntityManagerFactory("pedido");
-
-	
-	private static EntityManagerFactory emfCaixa = Persistence
-			.createEntityManagerFactory("caixa");
 
 	
 	/**
@@ -37,6 +45,15 @@ public class JPAUtil {
 	public static EntityManager getEntityManagerCaixa() {
 		return emfCaixa.createEntityManager();
 	}
+
+	public static EntityManager getEntityManagerOferta() {
+		return emfOferta.createEntityManager();
+	}
+
+	public static EntityManager getEntityManagerUsuario() {
+		return emfUsuario.createEntityManager();
+	}
+
 
 
 }

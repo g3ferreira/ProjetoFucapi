@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:h="http://java.sun.com/jsf/html">
+	<f:view contentType="text/html"/>
+	<h:head>                                         
+		<title>Dandão Lanches - Cadastro de Ofertas</title>
+		<h:outputStylesheet library="css" name="grid.css"/>
+
+		<h:outputStylesheet library="css" name="style.css"/>
+	</h:head>
+	<h:body>
+	
+	<div id="blocoCabecalho">
+		<div class="container">
+			<h:graphicImage library="imagens" name="genilson2.png" 	id="logoCompany"/>
+		</div>
+	</div>
+	
+		<div id="blocoConteudo">
+		<div class="container">
+		<h2>Cadastro de Oferta</h2>
+		<h:form id="dados">
+			<fieldset>
+				<legend>Dados da Oferta</legend>
+				<h:panelGrid columns="2">
+					<h:outputLabel value="Id:" for="idoferta" 
+					     rendered="#{ofertaController.oferta.idoferta != null}"/>
+					<h:inputText id="id" 
+						 value="#{ofertaController.oferta.idoferta}"
+						 rendered="#{ofertaController.oferta.idoferta != null}"
+						 readonly="true"/>
+					<h:outputLabel value="Data cadastro:" for="dataCadastro" 
+					     rendered="#{ofertaController.oferta.idoferta!= null}"/>
+					<h:inputText id="data" 
+						 value="#{ofertaController.oferta.dataCadastro.time}"
+						 rendered="#{ofertaController.oferta.idoferta != null}"
+						 readonly="true">
+						 <f:convertDateTime pattern="dd/MM/yyyy"/>
+					</h:inputText>
+					<h:outputLabel value="Nome da Oferta:" for="nome"/>
+					<h:inputText id="nome" value="#{ofertaController.oferta.nomeOferta}"/>
+					<h:outputLabel value="Preço:" for="preco"/>
+					<h:inputText id="preco" value="#{ofertaController.oferta.preco}"/>
+					<h:outputLabel value="Item: " for="produto"/>
+				     <h:selectOneMenu id="produto"  value="#{ofertaController.oferta.produto}">  
+           			 	<f:selectItem itemLabel="X-Salada + Batata Frita + Coca 2L" itemValue="X-Salada + Batata Frita + Coca 2L" />  
+            		 	<f:selectItem itemLabel="X-Salada Bacon+ Purê + Coca 2L"  itemValue="X-Salada Bacon+ Purê + Coca 2L" />  
+            		 	<f:selectItem itemLabel="X-TUDÃO e mais um pouco + BATATA FRITA + Coca 1.5L"  itemValue="X-TUDÃO e mais um pouco + BATATA FRITA + Coca 1.5L" />  
+
+        			</h:selectOneMenu>
+					
+					
+					<h:commandButton value="Salvar" action="#{ofertaController.salvar}">
+						<f:ajax execute="@form" render	="@form :tabela" />
+					</h:commandButton>
+				</h:panelGrid>
+			</fieldset>
+		</h:form>
+			
+		<h2>Listagem de Ofertas</h2>
+		<h:form id="tabela">
+			<h:dataTable value="#{ofertaController.listaOferta}" var="oferta"
+				styleClass="dados" rowClasses="impar,par" >
+				<h:column>
+					<f:facet name="header"><h:outputText value="Cadastro" /></f:facet>
+					<h:outputText value="#{oferta.dataCadastro.time}">
+						<f:convertDateTime pattern="dd/MM/yyyy"/>
+					</h:outputText>
+				</h:column>
+				<h:column>
+					<f:facet name="header"><h:outputText value="Nome Oferta" /></f:facet>
+					#{oferta.nomeOferta}
+				</h:column>
+
+				<h:column>
+					<f:facet name="header"><h:outputText value="Produto" /></f:facet>
+					#{oferta.produto}
+				</h:column>
+				<h:column>
+					<f:facet name="header"> <h:outputText value="Preço" /></f:facet>
+					<h:outputText value="#{oferta.preco}" >
+						<f:convertNumber pattern="R$ #0.00"/>
+					</h:outputText>
+				</h:column>			
+				
+				<h:column>
+					<h:commandLink action="#{ofertaController.excluir}" 
+								   value="Remover">
+						<f:ajax render="@form" />
+						<f:setPropertyActionListener 
+							target="#{ofertaController.oferta}" 
+							value="#{oferta}"/>
+					</h:commandLink>
+				</h:column>
+				<h:column>
+					<h:commandLink value="Alterar">
+						<f:ajax render="@form :dados" />
+						<f:setPropertyActionListener 
+							target="#{ofertaController.oferta}" 
+							value="#{oferta}"/>
+					</h:commandLink>
+				</h:column>
+			</h:dataTable>
+		</h:form>
+	</div>
+	</div>
+	<div id="cardapio-produto" >
+		<marquee>
+		<image width="210" height="210" src="resources/imagens/xtudo.png" />
+		<image width="210" height="210" src="resources/imagens/misto.jpg" />
+		<image width="210" height="210" src="resources/imagens/drinks.jpg" />
+		<image width="210" height="210" src="resources/imagens/moussechoco.jpg" />
+		<image width="210" height="210" src="resources/imagens/moussemorango.jpg" />
+		<image width="210" height="210" src="resources/imagens/refris.jpg" />
+		<image width="210" height="210" src="resources/imagens/xsalada.jpg" />
+		<image width="210" height="210" src="resources/imagens/kikao.jpg" />
+		 </marquee>
+	</div>
+<!--	<div id="blocoRodape">
+ 	<div class="container" >
+		<p>Copyright 2013. Todos os direitos reservados</p>
+	</div>
+	</div> -->
+	</h:body>
+</html>

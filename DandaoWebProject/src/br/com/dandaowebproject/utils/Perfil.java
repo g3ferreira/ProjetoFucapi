@@ -24,7 +24,7 @@ public class Perfil {
 	@JoinTable(name="usuario_perfil", 
 	joinColumns={@JoinColumn(name="perfil_id", referencedColumnName="id")},
 	inverseJoinColumns={@JoinColumn(name="usuario_id", referencedColumnName="id")}) 
-	private List<Usuario> usuarioList;
+	private List<Usuario_T> usuarioList;
 	
 	public Integer getId() {
 		return id;
@@ -38,10 +38,10 @@ public class Perfil {
 	public void setNomePerfil(String nomePerfil) {
 		this.nomePerfil = nomePerfil;
 	}
-	public List<Usuario> getUsuarioList() {
+	public List<Usuario_T> getUsuarioList() {
 		return usuarioList;
 	}
-	public void setUsuarioList(List<Usuario> usuarioList) {
+	public void setUsuarioList(List<Usuario_T> usuarioList) {
 		this.usuarioList = usuarioList;
 	}
 

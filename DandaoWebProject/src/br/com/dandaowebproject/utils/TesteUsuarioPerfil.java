@@ -26,19 +26,19 @@ public class TesteUsuarioPerfil {
 		perfil.setNomePerfil("Admin");
 		em.persist(perfil);
 	
-		Usuario usuario = new Usuario();
-		usuario.setLogin("testeuser");
-		usuario.setSenha("senhaqualquer");
-		usuario.setPerfil(perfil);
-		em.persist(usuario);
+		Usuario_T usuario_T = new Usuario_T();
+		usuario_T.setLogin("testeuser");
+		usuario_T.setSenha("senhaqualquer");
+		usuario_T.setPerfil(perfil);
+		em.persist(usuario_T);
 		
-		Usuario usuario2 = new Usuario();
+		Usuario_T usuario2 = new Usuario_T();
 		usuario2.setLogin("testeuser");
 		usuario2.setSenha("senhaqualquer");
 		usuario2.setPerfil(perfil);
 		em.persist(usuario2);
 		
-		Usuario usuario3 = new Usuario();
+		Usuario_T usuario3 = new Usuario_T();
 		usuario3.setLogin("testeuser");
 		usuario3.setSenha("senhaqualquer");
 		usuario3.setPerfil(perfil);

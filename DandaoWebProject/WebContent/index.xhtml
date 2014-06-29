@@ -51,14 +51,37 @@
 	}
 	function clearMan()
 	{
+		
 		document.getElementById("txtLogin").value="";
 		document.getElementById("txtSenha").value ="";
+	
+				
+	}
 		
 	}
 	function showMessage(msg)
 	{
 		alert(msg);
 	}
+	
+	function dblookup()
+	{
+	    var myConnect = "jdbc:postgresql://localhost/dbDandao"; 
+	 
+	    var ConnectObj = new ActiveXObject("ADODB.Connection");
+	    var RS = new ActiveXObject("ADODB.Recordset");
+	    var sql="SELECT * FROM usuario;";
+	 
+	    ConnectObj.Open(myConnect);
+	    RS.Open(sql,ConnectObj,adOpenForwardOnly,adLockReadOnly,adCmdText);
+	 
+	    var fieldCount = RS.Fields.Count;
+	    alert("Field Count" + fieldCount);    
+	    RS.Close();
+	    ConnectObj.Close();
+	}
+	 
+	
 	
 	
 </script>
